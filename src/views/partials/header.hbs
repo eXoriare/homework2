@@ -1,0 +1,26 @@
+<nav>
+  <ul class="d-flex justify-content-center my-2 mx-5">
+    <li class="mx-5">
+      <a href="/">На главную</a>
+    </li>
+    {{#if name}}
+    <li class="mx-5">
+      <a href="/secret">Постняшечки</a>
+    </li>
+    <li class="mx-5">
+      <a href="/auth/signOut">Выйти</a>
+    </li>
+    {{else}}
+    <li class="mx-5">
+      <a href="/auth/signUp">Зарегистрироваться</a>
+    </li>
+    <li class="mx-5">
+      <a href="/auth/signIn">Войти</a>
+    </li>
+    {{/if}}    
+  </ul>
+</nav>
+
+{{#if name}}
+  <h2 class="d-flex justify-content-center my-2">Здравствуй, {{name}}</h2>
+{{/if}}
