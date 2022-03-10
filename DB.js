@@ -2,14 +2,11 @@ const db = {
   users: [
 
   ],
-}
-
-const dbb = {
-  people: [
+  posts: [
 
   ],
 }
 
 module.exports = {
-  db, dbb,
+  db,
 }

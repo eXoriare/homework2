@@ -1,5 +1,6 @@
-const $signUpForm = document.forms.signupform
-const $fetchBtn = document.querySelector('[data-fetch]')
+const $signUpForm = document.forms.signUpForm
+
+const $posts = document.querySelector('[data-posts]')
 
 if ($signUpForm) {
   const $emailInput = $signUpForm.elements.email
@@ -35,15 +36,21 @@ if ($signUpForm) {
   })
 }
 
-if ($fetchBtn) {
-  $fetchBtn.addEventListener('click', () => {
-    fetch('/fetch/', {
-      method: 'DELETE',
+$posts.addEventListener('click', async (e) => {
+  if (e.target.dataset.remove_post === '') {
+    console.log(e.target.dataset.remove_post)
+    const parent = e.target.closest('[data-post_id]')
+    const response = await fetch(`/remove_post/${parent.dataset.post_id}`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ id: Date.now() }),
+      body: JSON.stringify({ remove: '1' }),
     })
-      .then((response) => { console.log({ response }) })
-  })
-}
+    if (response.status === 200) {
+      parent.remove()
+    } else if (response.status === 403) {
+      alert('Вы пытаетесь удалить чужой пост. Не надо так nyan (」°ロ°)」 ')
+    }
+  }
+})
