@@ -69,8 +69,6 @@ server.get('/secret', checkAuth, (req, res) => {
 })
 
 server.post('/formposts', (req, res) => {
-  // start
-
   const dataFromForm = req.body
 
   dataFromForm.authorName = req.session?.user?.name
@@ -81,22 +79,9 @@ server.post('/formposts', (req, res) => {
   res.redirect('/secret')
 })
 
-// stop
-
-//   const dataFromForm = req.body
-
-//   db.posts.push(dataFromForm)
-
-//   res.redirect('/secret')
-// })
-
-// start
-
 server.delete('/fetch', (req, res) => {
   res.sendStatus(204)
 })
-
-// stop
 
 server.get('/auth/signup', (req, res) => {
   res.render('signUp')
